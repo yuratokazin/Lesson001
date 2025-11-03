@@ -142,7 +142,7 @@ clickButton.addEventListener('click', function() {
    - находит кнопку и элемент со счётчиком по ID;
    - при клике на кнопку увеличивает значение счётчика и обновляет текст на странице.
 
-
+Links used:
 
 https://purpleschool.ru/blog/HTML_CSS_JS
 
