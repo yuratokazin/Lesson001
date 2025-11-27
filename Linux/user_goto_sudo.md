@@ -162,6 +162,12 @@ qdbus org.kde.ksmserver /KSMServer reconfigure
 sudo nano /etc/systemd/sleep.conf.d/disable-suspend.conf
 ```
 
+Если папка `/etc/sddm.conf.d/` не существует, создайте её командой:
+
+```bash
+sudo mkdir -p /etc/sddm.conf.d/
+```
+
 Добавьте:
 
 ```ini
