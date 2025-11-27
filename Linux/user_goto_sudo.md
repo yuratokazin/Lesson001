@@ -86,7 +86,7 @@ User=ваше_имя_пользователя
 ### Запретить блокировку экрана и переход в ждущий режим
 
 ````
-nano ~/.config/kscreenlockerrc
+sudo nano ~/.config/kscreenlockerrc
 ````
 
 Содержание файла                           
@@ -109,7 +109,7 @@ Timeout=false
 Откройте файл в текстовом редакторе:
 
 ```bash
-nano ~/.config/kscreenlockerrc
+sudo nano ~/.config/kscreenlockerrc
 ```
 
 Измените значение `Timeout` на `0` (отключает таймаут):
