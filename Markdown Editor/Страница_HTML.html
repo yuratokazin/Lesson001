@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Markdown Editor как на GitHub</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .editor-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .controls {
+      padding: 12px 16px;
+      background-color: #f6f8fa;
+      border-bottom: 1px solid #e1e4e8;
+    }
+
+    .controls button {
+      padding: 6px 12px;
+      background-color: #24292e;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .controls button:hover {
+      background-color: #1a1e23;
+    }
+
+    .tabs {
+      flex: 0 0 auto;
+      display: flex;
+      border-bottom: 1px solid #e1e4e8;
+    }
+
+    .tabs button {
+      padding: 12px 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      color: #586069;
+    }
+
+    .tab-active {
+      color: #24292e;
+      border-bottom: 2px solid #0366d6;
+    }
+
+    .panel {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    #edit-panel {
+      display: flex;
+    }
+
+    textarea {
+      width: 100%;
+      border: none;
+      resize: none;
+      padding: 16px;
+      font-size: 14px;
+      line-height: 1.6;
+      outline: none;
+    }
+
+    /* Стили для превью (как у GitHub) */
+    #markdown-output {
+      padding-left: 24px;
+      padding-right: 24px;
+      box-sizing: border-box;
+    }
+
+    #markdown-output h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 24px 0 16px;
+    }
+
+    #markdown-output h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 24px 0 16px;
+    }
+
+    #markdown-output p {
+      margin: 0 0 16px;
+    }
+
+    #markdown-output ul, ol {
+      padding-left: 2em;
+      margin: 0 0 16px;
+    }
+
+    #markdown-output code {
+      background-color: rgba(27, 31, 35, 0.05);
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+
+    #markdown-output pre {
+      background-color: #f6f8fa;
+      border: 1px solid #e1e4e8;
+      border-radius: 6px;
+      padding: 16px;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="editor-container">
+    <!-- Кнопки управления -->
+    <div class="controls">
+      <button onclick="saveMarkdown()">Сохранить как .md</button>
+    </div>
+
+    <!-- Вкладки -->
+    <div class="tabs">
+      <button class="tab-active" onclick="showTab('edit')">Edit</button>
+      <button onclick="showTab('preview')">Preview</button>
+    </div>
+
+    <!-- Редактор -->
+    <div id="edit-panel" class="panel">
+      <textarea id="markdown-input" placeholder="Введите Markdown..."></textarea>
+    </div>
+
+    <!-- Превью -->
+    <div id="preview-panel" class="panel">
+      <div id="markdown-output"></div>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  // Элементы
+  const editPanel = document.getElementById('edit-panel');
+  const previewPanel = document.getElementById('preview-panel');
+  const markdownInput = document.getElementById('markdown-input');
+  const markdownOutput = document.getElementById('markdown-output');
+
+  // Переключение вкладок
+  function showTab(tabName) {
+    if (tabName === 'edit') {
+      editPanel.style.display = 'flex';
+      previewPanel.style.display = 'none';
+      document.querySelector('.tabs button:nth-child(1)').classList.add('tab-active');
+      document.querySelector('.tabs button:nth-child(2)').classList.remove('tab-active');
+    } else {
+      editPanel.style.display = 'none';
+      previewPanel.style.display = 'block';
+      document.querySelector('.tabs button:nth-child(1)').classList.remove('tab-active');
+      document.querySelector('.tabs button:nth-child(2)').classList.add('tab-active');
+      renderMarkdown();
+    }
+  }
+
+  // Рендеринг Markdown в HTML
+  function renderMarkdown() {
+    const markdownText = markdownInput.value;
+    markdownOutput.innerHTML = marked.parse(markdownText);
+  }
+
+  // Авто-рендеринг при вводе (только если открыта вкладка Preview)
+  markdownInput.addEventListener('input', () => {
+    if (document.querySelector('.tab-active').textContent === 'Preview') {
+      renderMarkdown();
+    }
+  });
+
+  // Функция сохранения Markdown-файла
+  function saveMarkdown() {
+    const markdownText = markdownInput.value;
+
+    // Проверка на пустой текст
+    if (!markdownText) {
+      alert('Нет текста для сохранения!');
+      return;
+    }
+
+    // Создаём Blob с содержимым
+    const blob = new Blob([markdownText], { type: 'text/markdown' });
+
+    // Создаём ссылку для скачивания
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'document.md'; // Имя файла по умолчанию
+
+    // Добавляем ссылку в документ и запускаем скачивание
+    document.body.appendChild(link);
+    link.click();
+
+    // Очищаем ресурсы
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+  }
+
+  // Инициализация: открываем вкладку Edit при загрузке
+  showTab('edit');
+</script>
+</body>
+</html>

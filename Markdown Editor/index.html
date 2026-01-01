@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Markdown Editor как на GitHub</title>
+  <!-- CSS из раздела 2 -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- HTML из раздела 1 -->
+
+  <div class="editor-container">
+    <!-- Кнопки управления -->
+    <div class="controls">
+      <button onclick="saveMarkdown()">Сохранить как .md</button>
+    </div>
+
+    <!-- Вкладки -->
+    <div class="tabs">
+      <button class="tab-active" onclick="showTab('edit')">Edit</button>
+      <button onclick="showTab('preview')">Preview</button>
+    </div>
+
+    <!-- Редактор -->
+    <div id="edit-panel" class="panel">
+      <textarea id="markdown-input" placeholder="Введите Markdown..."></textarea>
+    </div>
+
+    <!-- Превью -->
+    <div id="preview-panel" class="panel">
+      <div id="markdown-output"></div>
+    </div>
+  </div>
+  <!-- конец HTML из раздела 1 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!--  JavaScript из раздела 3.2  -->
+    <script src="script.js"></script>
+</body>
+</html>
