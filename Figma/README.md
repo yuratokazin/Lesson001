@@ -1,3 +1,27 @@
+### Скачать бесплатные Figma-шаблоны
+
+Чтобы скачать бесплатные Figma-шаблоны, ищите на официальном сайте сообщества Figma, а также на ресурсах вроде [FigmaFreebie](https://figmafreebie.com/electric-car-app-by-nickelfox-design-free-figma-template.html), вводя запросы типа "EV Car", "Electric Car App" или "Car Landing Page", и вы найдете шаблоны для лендингов и приложений, которые можно  скопировать в свой аккаунт Figma. 
+
+Вот несколько вариантов, где искать:
+
+1. **Официальное сообщество Figma (Figma Community)**:
+   - Введите в поиск: **"Electric Car Landing Page"**, **"EV App"**, **"Car UI Kit"**.
+   - Пример шаблона: "Free EV Car Figma Template" от [UiChemy](https://www.figma.com/community/file/1515317040272256376/free-ev-car-figma-template-landing-page-for-figma-to-wordpress-by-uichemy-figma-to-ai-code).
+2. **FigmaFreebie**:
+   - Сайт, где собраны бесплатные шаблоны. Ищите по запросам, связанным с электромобилями.
+3. **Другие площадки**:
+   - UI8 (платный, но есть бесплатные), Dribbble, Behance — там тоже часто выкладывают бесплатные части своих проектов. 
+
+
+
+**Как скачать:**
+
+1. Перейдите по ссылке на понравившийся шаблон.
+2. Нажмите кнопку **"Duplicate"** (Дублировать) или **"Open in Figma"**.
+3. Шаблон откроется в вашем аккаунте Figma, и вы сможете его редактировать. 
+
+---
+
 ## Руководство по работе в Figma
 
 ### Создание нового проекта
