@@ -23,6 +23,9 @@ https://t.me/+9XtDDNBdHAk4Yjhi
 
 ---
 
+Это уже я скачал 
+https://www.figma.com/design/lSeHkdflGPV1XGX4TwICkb/Free-EV-Car-Figma-Template-%E2%80%93-Landing-Page-for-Figma-to-WordPress-by-UiChemy---Figma-to-AI-Code--Community-?node-id=4001-18&t=oqUUXRGzLxOTagtI-0
+
 #### Старт практики: создаём папки, index.html, main.css, Live Server
 
 Пошаговая инструкция: создание базовой структуры проекта и настройка среды для вёрстки сайта EV Cars
