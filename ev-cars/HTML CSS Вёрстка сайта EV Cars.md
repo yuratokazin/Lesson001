@@ -4,7 +4,7 @@
 
 ### Ссылка на макет в Telegram, как скопировать Figma
 
-[https://t.me/+9XtDDNBdHAk4Yjhi](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbnE2LWZBTEZ4UzBtQzdudnVkclJDQWJZdEViQXxBQ3Jtc0tuMXpFU2RyTHgxQjdZQkoxU3N0NVUyOUQyZlVrcW1OZm9YTUlZcmlTMjIxUVBBZ21icWYwX3cyTVc0aDlpaXNKbk1GVjlGaXBLd1ZuQVV6Z1BNZDc0WkgxVmxwQmJ4d3MxaEt6SDVJcHFyMUl4SmVkYw&q=https%3A%2F%2Ft.me%2F%2B9XtDDNBdHAk4Yjhi&v=prdHbN--cVk) 
+https://t.me/+9XtDDNBdHAk4Yjhi
 
 #### Как скопировать макет в Figma
 
