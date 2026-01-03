@@ -1,3 +1,5 @@
+**Boxy SVG** — это векторный графический редактор,  ориентированный на создание и редактирование изображений в формате SVG  (Scalable Vector Graphics). 
+
 ### Скачать бесплатные Figma-шаблоны
 
 Чтобы скачать бесплатные Figma-шаблоны, ищите на официальном сайте сообщества Figma, а также на ресурсах вроде [FigmaFreebie](https://figmafreebie.com/electric-car-app-by-nickelfox-design-free-figma-template.html), вводя запросы типа "EV Car", "Electric Car App" или "Car Landing Page", и вы найдете шаблоны для лендингов и приложений, которые можно  скопировать в свой аккаунт Figma. 
