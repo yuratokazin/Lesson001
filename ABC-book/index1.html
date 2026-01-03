@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой сайт name</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Добро пожаловать на мой сайт</h1>
+        <nav>
+            <ul>
+                <li><a href="#" data-page="home">Главная</a></li>
+                <li><a href="#" data-page="about">О нас</a></li>
+                <li><a href="#" data-page="contact">Контакты</a></li>
+            </ul>
+        </nav>
+        <button id="themeToggle">Сменить тему</button>
+    </header>
+
+    <main>
+        <section id="home-section">
+            <h2>Главная</h2>
+            <p id="welcome-text">Приветствую на нашем сайте!</p>
+            <!-- Добавьте эту кнопку в секцию home -->
+<button id="clickMe" class="btn">Нажми меня!</button>
+<div id="click-counter" class="counter">Количество нажатий: 0</div>
+        </section>
+
+        <section id="about-section">
+            <h2>О нас</h2>
+            <p>Это простой параграф текста о нашей компании.</p>
+            <div class="service">
+                <h3>Веб-разработка</h3>
+                <p>Создаем современные сайты</p>
+            </div>
+            <div class="service">
+                <h3>Дизайн</h3>
+                <p>Разрабатываем красивые интерфейсы</p>
+            </div>
+        </section>
+
+        <section id="contact-section" style="display: none;">
+            <h2>Контакты</h2>
+            <form id="contact-form">
+                <div>
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="message">Сообщение:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit">Отправить</button>
+            </form>
+            <div id="form-message"></div>
+        </section>
+
+        <section>
+            <h2>Динамический контент</h2>
+            <div id="dynamic-content">
+                <!-- Сюда будем добавлять элементы через JavaScript -->
+            </div>
+            <button id="add-item">Добавить элемент</button>
+            <button id="remove-item">Удалить элемент</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year">2024</span> Мой сайт. Все права защищены.</p>
+    </footer>
+
+    <-- ПОДКЛЮЧЕНИЕ JavaScript файла -->
+ <script src="jscript2.js"></script>
+</body>
+
+</html>
