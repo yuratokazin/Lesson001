@@ -1,5 +1,7 @@
 ###  HTML CSS Вёрстка сайта EV Cars. Часть 1
 
+https://vkvideo.ru/video-40137828_456262801
+
 https://www.youtube.com/watch?v=prdHbN--cVk
 
 ---
@@ -21,12 +23,12 @@ https://t.me/+9XtDDNBdHAk4Yjhi
    - стилизовать,
    - удалять или добавлять элементы.
 
-
-
 ---
 
-Это уже я скачал 
+Это уже у меня 
 https://www.figma.com/design/lSeHkdflGPV1XGX4TwICkb/Free-EV-Car-Figma-Template-%E2%80%93-Landing-Page-for-Figma-to-WordPress-by-UiChemy---Figma-to-AI-Code--Community-?node-id=4001-18&t=oqUUXRGzLxOTagtI-0
+
+## Tutorial по видео
 
 #### Старт практики: создаём папки, index.html, main.css, Live Server
 
