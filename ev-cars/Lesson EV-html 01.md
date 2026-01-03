@@ -25,7 +25,7 @@ https://t.me/+9XtDDNBdHAk4Yjhi
 
 ---
 
-Это макет в Figma у меня 
+Ссылка на макет в Figma у меня 
 https://www.figma.com/design/lSeHkdflGPV1XGX4TwICkb/Free-EV-Car-Figma-Template-%E2%80%93-Landing-Page-for-Figma-to-WordPress-by-UiChemy---Figma-to-AI-Code--Community-?node-id=4001-18&t=oqUUXRGzLxOTagtI-0
 
 ---
