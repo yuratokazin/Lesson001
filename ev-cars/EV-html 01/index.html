@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+
+	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+		<symbol id="arrow-top" width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+			<path d="M1.21221 0H13.6977V12.4854H12.297V2.39516L0.994515 13.6977L0 12.7037L11.3031 1.40065H1.21221V0Z" />
+		</symbol>
+		<symbol id="burger" viewBox="0 0 800 800" fill="none">
+			<path d="M166.667 400H600" stroke="black" stroke-width="66.6667" stroke-linecap="square" />
+			<path d="M400 566.667H600" stroke="black" stroke-width="66.6667" stroke-linecap="square" />
+			<path d="M266.667 233.333H600" stroke="black" stroke-width="66.6667" stroke-linecap="square" />
+		</symbol>
+	</svg>
+
+
+
+	<div class="hero">
+		<div class="container container--wide">
+			<nav class="nav">
+				<a class="nav__logo" href="#">
+					<img src="./img/logo/logo.png" srcset="./img/logo/logo@2x.png 2x" alt="" class="nav__logo-img">
+				</a>
+
+				<ul class="nav__list">
+					<li class="nav__item">
+						<a href="#!" class="nav__link">Home</a>
+					</li>
+					<li class="nav__item">
+						<a href="#!" class="nav__link">Products</a>
+					</li>
+					<li class="nav__item">
+						<a href="#!" class="nav__link">Features</a>
+					</li>
+					<li class="nav__item">
+						<a href="#!" class="nav__link">Gear Shop</a>
+					</li>
+				</ul>
+
+				<div class="nav__btn">
+					<a href="#" class="button">
+						Order Now
+						<svg class="button__icon" aria-hidden="true">
+							<use href="#arrow-top"></use>
+						</svg>
+					</a>
+				</div>
+				<div class="nav__mobile">
+					<button>
+						<svg class="nav__mobile-icon">
+							<use href="#burger"></use>
+						</svg>
+					</button>
+				</div>
+			</nav>
+		</div>
+
+
+		<div class="container">
+			<div class="hero__picture none">
+				<img src="./img/hero/content.png" srcset="./img/hero/content@2x.png" alt="">
+			</div>
+
+			<div class="hero__picture">
+
+				<!-- <div class="figure">
+					<div class="figure__line-1">SMOOTH</div>
+					<div class="figure__line-2">EV CARS</div>
+					<img src="" alt="" src="./img/hero/hero-img.png" srcset="./img/hero/hero-img@2x.png 2x" class="figure__img">
+				</div> -->
+
+				<img src="./img/hero/content.png" srcset="./img/hero/content@2x.png 2x" alt="">
+			</div>
+
+			<div class="hero__details">
+				<div class="detail">
+					<div class="detail__value">14m</div>
+					<div class="detail__desc">Battery Cost Reduction</div>
+				</div>
+				<div class="detail">
+					<div class="detail__value">89%</div>
+					<div class="detail__desc">Battery Cost Reduction</div>
+				</div>
+				<div class="detail">
+					<div class="detail__value">1.2M</div>
+					<div class="detail__desc">Charging infrastructure Expansion</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+</body>
+
+</html>
