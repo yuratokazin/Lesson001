@@ -1,5 +1,7 @@
 ###  HTML CSS Вёрстка сайта EV Cars. Часть 1
 
+https://www.youtube.com/watch?v=prdHbN--cVk
+
 ---
 
 ### Ссылка на макет в Telegram, как скопировать Figma
