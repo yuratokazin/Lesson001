@@ -1,0 +1,32 @@
+#game-area {
+    display: grid;
+    /* Количество столбцов и размер ячеек будут заданы через JS */
+    border: 1px solid black;
+}
+
+.cell {
+    width: 20px; /* Размер квадрата */
+    height: 20px;
+    box-sizing: border-box;
+}
+
+.wall {
+    background-color: black;
+}
+
+.path {
+    background-color: white;
+}
+
+.player {
+    background-color: red; /* Красный квадрат для игрока */
+}
+
+.enemy {
+    background-color: blue; /* Синий квадрат для врага */
+}
+
+.exit {
+    background-color: green; /* Выход из лабиринта */
+}
+
