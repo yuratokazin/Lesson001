@@ -1,0 +1,212 @@
+/* Базовые стили */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Установленный шрифт */
+  margin: 0;
+  padding: 0;
+  background-color: #F8F9FA; /* Светлый фон страницы */
+  color: #212529; /* Нейтральный цвет текста */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #E9ECEF; /* Светло-серый фон заголовка */
+  color: #212529;
+  text-align: center; /* Центрирует текст в мобильной версии */
+  border-bottom: 1px solid #DEE2E6;
+  position: relative;
+  border-radius: 0.5rem; /* Скругленные углы заголовка */
+}
+
+/* Стили для кнопки-гамбургера */
+.hamburger {
+  display: flex; /* Убедиться, что кнопка всегда видна */
+  cursor: pointer;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: absolute;
+  right: 1rem; /* Расположить кнопку справа */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #212529; /* Темный цвет полосок */
+  border-radius: 2px; /* Скругленные углы полосок */
+}
+
+/* Стили для выпадающего меню */
+.nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: none; /* Меню скрыто по умолчанию */
+  position: absolute; /* Относительное положение */
+  top: calc(100% + 2px); /* Меню будет на 2px ниже кнопки "гамбургер" */
+  right: 0; /* Выравнивание по правому краю */
+  background-color: #E9ECEF; /* Светло-серый фон меню */
+  border: 1px solid #DEE2E6; /* Светлая рамка */
+  border-radius: 0.5rem; /* Скругленные углы меню */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
+  padding: 0.5rem; /* Внутренние отступы */
+  z-index: 5;
+  width: auto; /* Ширина по содержимому */
+}
+
+.nav ul.active {
+  display: block; /* Показывать меню, когда оно активно */
+}
+
+.nav ul li {
+  padding: 0.5rem 1rem; /* Внутренние отступы элементов */
+}
+
+.nav ul li a {
+  text-align: left; /* Выравнивание текста по левому краю */
+  text-decoration: none; /* Убрать подчеркивание текста */
+  color: #212529; /* Темно-серый текст */
+  border-radius: 0.25rem; /* Скругленные углы ссылок в меню */
+}
+
+.nav ul li a:hover {
+  background-color: #F1F1F1; /* Светлый фон при наведении */
+}
+
+.nav a {
+  color: #212529; /* Темно-серый текст ссылок */
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem; /* Скругленные углы ссылок */
+  transition: background-color 0.3s ease;
+  text-align: left; /* Выравнивание текста по левому краю */
+  display: block; /* Обеспечивает корректное выравнивание */
+}
+
+.nav a:hover {
+  background-color: #F1F1F1; /* Светло-серый фон при наведении */
+}
+
+.content {
+  background-color: #FFFFFF;
+  padding: 2rem;
+  margin: 1rem auto;
+  max-width: 90%;
+  border-radius: 0.5rem; /* Скругленные углы содержимого */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.content p {
+  font-size: 1rem;
+  color: #495057; /* Темно-серый текст */
+}
+
+.footer {
+  background-color: #E9ECEF;
+  padding: 1em;
+  text-align: center;
+  border-top: 1px solid #DEE2E6;
+  color: #6C757D;
+  font-size: 1rem;
+  margin: 1rem auto;
+  max-width: 95%; /* Ограничивает максимальную ширину содержимого */
+  border-radius: 0.5rem; /* Скругленные углы */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .nav ul {
+    display: none; /* Скрыть меню по умолчанию */
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 2px); /* Меню будет ниже кнопки */
+    right: 0; /* Меню выдвигается справа */
+    background-color: #E9ECEF; /* Светло-серый фон для мобильной версии */
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    border-radius: 0.5rem; /* Скругленные углы мобильного меню */
+  }
+
+  .nav ul.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex; /* Показывать кнопку-гамбургер */
+  }
+}
+
+/* Стили для элементов регистрации */
+.form-group {
+  margin-bottom: 1rem; /* Отступ между полями ввода */
+  display: flex;
+  flex-direction: column; /* Расположить подписи и поля ввода вертикально */
+}
+
+.form-group label {
+  margin-bottom: 0.5rem; /* Отступ между подписью и полем ввода */
+  font-weight: bold; /* Полужирный шрифт для подписей */
+  color: #495057; /* Темно-серый цвет */
+}
+
+.form-group input {
+  width: 100%; /* Поле занимает всю ширину контейнера */
+  padding: 0.5rem; /* Внутренний отступ для удобного ввода текста */
+  border: 1px solid #DEE2E6; /* Светло-серая рамка */
+  border-radius: 0.5rem; /* Слегка скругленные углы */
+  font-size: 1rem; /* Удобный размер текста */
+  color: #495057; /* Темно-серый цвет текста */
+}
+
+.form-group input:focus {
+  border-color: #007BFF; /* Синий цвет рамки при фокусе */
+  outline: none; /* Убрать стандартное выделение */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Светящийся эффект */
+}
+
+.submit-btn {
+  display: block; /* Блоковая кнопка занимает всю ширину родителя */
+  width: 100%; /* Кнопка по ширине равна контейнеру */
+  padding: 0.75rem; /* Внутренний отступ */
+  background-color: #007BFF; /* Синий фон */
+  border: none; /* Без рамки */
+  border-radius: 0.5rem; /* Скругленные углы кнопки */
+  font-size: 1rem; /* Размер текста */
+  color: #fff; /* Белый текст */
+  cursor: pointer; /* Курсор в виде руки */
+  text-align: center; /* Выравнивание текста внутри кнопки */
+  transition: background-color 0.3s ease; /* Плавный переход цвета фона */
+}
+
+.submit-btn:hover {
+  background-color: #0056b3; /* Темно-синий фон при наведении */
+}
+
+i.material-icons {
+  font-size: 34px;
+  color: #333;
+  margin-right: 8px;
+}
+
+/* Стили для блока ссылок */
+.fixed-links {
+  position: fixed; /* Фиксирует блок относительно окна браузера */
+  top: 50%; /* Устанавливает позицию блока по вертикали (по центру) */
+  left: 0; /* Блок находится слева */
+  transform: translateY(-50%); /* Центрирование блока по вертикали */
+  background-color: #E9ECEF; /* Фон блока */
+  padding: 1rem; /* Внутренние отступы */
+  border-radius: 0.5rem; /* Скругленные углы блока */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень */
+}
+
+.fixed-links a {
+  display

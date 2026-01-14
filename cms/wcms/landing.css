@@ -1,0 +1,52 @@
+/*Этот файл отвечает за внешний вид страницы возрастного
+ограничения*/
+body {background-color: #3E1600;
+}
+.background {background-image: url(http://proudofukraine.com/wpcontent/uploads/2015/09/ukrainian-beer.jpg);
+width: 70%;
+height: 100%;
+margin: auto;
+}
+img {opacity: 0.3;
+width: 100%;
+}
+h1 {color: rgba(255, 255, 255, 0.4);
+font-family: 'Arial Narrow';
+font-size: 3em;
+font-stretch: ultra-condensed;
+}
+.question {position: absolute;
+top: 10%;
+left: 52%;
+}
+p {font-family: 'Arabella Medium', 'Times New Roman';
+font-size: 4em;
+color: #DB0000;
+text-shadow: 1px 1px 2px white;
+}
+button {width: 8em;
+height: 4em;
+background-color: #DB0000;
+border-radius: 5px;
+border-width: 3px;
+border-color: white;
+}
+button[name="Yes"] {position: absolute;
+top: 70%;
+left: 65%;
+}
+button[name="No"] {position: absolute;
+top: 70%;
+left: 20%;
+
+}
+button:hover {background-color: #740000;
+}
+a {font-family: 'Arabella Medium', 'Times New Roman';
+font-size: 2em;
+color: white;
+text-decoration: none;
+}
+a:hover {color: #FFFF00;
+text-shadow: 1px 1px 2px #FFA500;
+}
