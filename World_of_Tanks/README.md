@@ -205,4 +205,88 @@ sudo apt install wine libvulkan1 libvulkan1:i386
 
 Я могу помочь с **настройкой графики** в самих танках под Linux или подсказать, как решить проблемы с **голосовой связью** в игре через PortProton. Что-то из этого актуально?
 
+---
+---
+
+Давайте исправим ваш `/etc/apt/sources.list` раз и навсегда.
+
+\1. Исправляем sources.list
+
+Откройте файл:
+
+bash
+
+```
+sudo nano /etc/apt/sources.list
+```
+
+Используйте код с осторожностью.
+
+**Удалите всё** и вставьте именно эти строки (здесь исправлены пути `/debian` и добавлены нужные ветки):
+
+text
+
+```
+deb http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware
+
+deb http://deb.debian.org/debian/ bookworm-updates main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian/ bookworm-updates main contrib non-free non-free-firmware
+
+deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+deb-src http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+```
+
+Используйте код с осторожностью.
+
+*(Сохраните: `Ctrl+O` -> `Enter`, выйдете: `Ctrl+X`)*.
+
+\2. Применяем настройки
+
+Теперь репозитории заработают правильно:
+
+bash
+
+```
+sudo apt update
+```
+
+Используйте код с осторожностью.
+
+*(В выводе не должно быть ошибок "E: Репозиторий... не содержит файла Release")*.
+
+\3. Устанавливаем драйверы и библиотеки
+
+Теперь всё должно найтись:
+
+bash
+
+```
+sudo apt install libvulkan1 libvulkan1:i386 nvidia-driver nvidia-vulkan-icd nvidia-vulkan-icd:i386
+```
+
+Используйте код с осторожностью.
+
+\4. Установка самого Lesta Game Center
+
+После того как драйверы встанут, устанавливаем **PortProton** (это самый простой способ запустить Лесту на Debian):
+
+bash
+
+```
+wget -q -O - https://linux-gaming.ru | bash
+```
+
+Используйте код с осторожностью.
+
+**После выполнения:**
+
+- Обязательно **перезагрузитесь**.
+- Запустите PortProton из меню приложений.
+- Выберите **«Автоустановка»** -> **«Lesta Game Center»**.
+
+- 
+
+Если `apt update` всё равно выдает ошибку, проверьте, нет ли лишних файлов в папке `/etc/apt/sources.list.d/` — иногда они конфликтуют с основным списком. Показать, как их **проверить**?
+
 
