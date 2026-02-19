@@ -36,7 +36,7 @@
 
 ### Процесс установки
 
-1. **Загрузка Game Center:**
+1. **Загрузка Lesta Game Center:**
 
 - Скачайте официальный лаунчер Game Center с официального сайта https://lesta.ru/support/ru/products/lgc/article/23738/
 - Установите Game Center на компьютер
