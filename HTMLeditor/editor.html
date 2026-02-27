@@ -2,13 +2,64 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Full HTML Editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive HTML Editor</title>
     <style>
-        body { display: flex; height: 100vh; margin: 0; background: #2d2d2d; color: white; font-family: sans-serif; overflow: hidden; }
-        .panel { flex: 1; display: flex; flex-direction: column; }
-        .label { background: #1e1e1e; padding: 8px 15px; font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
-        textarea { flex: 1; padding: 15px; font-family: 'Consolas', monospace; font-size: 14px; border: none; background: #252526; color: #d4d4d4; resize: none; outline: none; }
-        iframe { flex: 1; border: none; background: white; }
+        body { 
+            display: flex; 
+            height: 100vh; 
+            margin: 0; 
+            background: #2d2d2d; 
+            color: white; 
+            font-family: sans-serif; 
+            overflow: hidden; 
+            flex-direction: row; /* По умолчанию в ряд */
+        }
+        
+        .panel { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 0; /* Важно для корректного скролла */
+        }
+        
+        .label { 
+            background: #1e1e1e; 
+            padding: 8px 15px; 
+            font-size: 12px; 
+            color: #aaa; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            border-bottom: 1px solid #3d3d3d;
+        }
+        
+        textarea { 
+            flex: 1; 
+            padding: 15px; 
+            font-family: 'Consolas', monospace; 
+            font-size: 14px; 
+            border: none; 
+            background: #252526; 
+            color: #d4d4d4; 
+            resize: none; 
+            outline: none; 
+        }
+        
+        iframe { 
+            flex: 1; 
+            border: none; 
+            background: white; 
+        }
+
+        /* --- Адаптив для смартфонов --- */
+        @media (max-width: 768px) {
+            body { 
+                flex-direction: column; /* Панели встают друг под друга */
+            }
+            .panel {
+                height: 50vh; /* Каждая панель занимает половину экрана */
+            }
+        }
     </style>
 </head>
 <body>
@@ -19,7 +70,7 @@
     </div>
 
     <div class="panel">
-        <div class="label">Результат отображения кода в браузере</div>
+        <div class="label">Результат в браузере</div>
         <iframe id="output"></iframe>
     </div>
 
@@ -36,20 +87,18 @@
 
         textarea.addEventListener('input', update);
 
-        // Твой шаблон
         textarea.value = `<!DOCTYPE html>
 <html lang="ru">
   <head>
     <meta charset="utf-8">
-    <title>Моя страница</title>
     <style>
-      body { font-family: sans-serif; text-align: center; padding-top: 50px; }
-      h1 { color: #007bff; }
+      body { font-family: sans-serif; text-align: center; padding-top: 20px; }
+      h1 { color: #007bff; font-size: 1.5rem; }
     </style>
   </head>
   <body>
-    <h1>Привет!</h1>
-    <p>Начни менять код слева.</p>
+    <h1>Привет с телефона!</h1>
+    <p>Редактор теперь сверху, а я здесь.</p>
   </body>
 </html>`;
 
