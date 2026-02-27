@@ -13,14 +13,14 @@
             color: white; 
             font-family: sans-serif; 
             overflow: hidden; 
-            flex-direction: row; /* По умолчанию в ряд */
+            flex-direction: row; 
         }
         
         .panel { 
             flex: 1; 
             display: flex; 
             flex-direction: column; 
-            min-height: 0; /* Важно для корректного скролла */
+            min-height: 0; 
         }
         
         .label { 
@@ -31,18 +31,35 @@
             text-transform: uppercase; 
             letter-spacing: 1px; 
             border-bottom: 1px solid #3d3d3d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+
+        #reset-btn {
+            background: #444;
+            color: #fff;
+            border: none;
+            padding: 2px 8px;
+            font-size: 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+
+        #reset-btn:active { background: #666; }
         
         textarea { 
             flex: 1; 
             padding: 15px; 
-            font-family: 'Consolas', monospace; 
+            font-family: 'Consolas', 'Monaco', monospace; 
             font-size: 14px; 
             border: none; 
             background: #252526; 
             color: #d4d4d4; 
             resize: none; 
             outline: none; 
+            tab-size: 2;
         }
         
         iframe { 
@@ -51,22 +68,20 @@
             background: white; 
         }
 
-        /* --- Адаптив для смартфонов --- */
         @media (max-width: 768px) {
-            body { 
-                flex-direction: column; /* Панели встают друг под друга */
-            }
-            .panel {
-                height: 50vh; /* Каждая панель занимает половину экрана */
-            }
+            body { flex-direction: column; }
+            .panel { height: 50vh; }
         }
     </style>
 </head>
 <body>
 
     <div class="panel">
-        <div class="label">HTML Код</div>
-        <textarea id="code" spellcheck="false"></textarea>
+        <div class="label">
+            <span>HTML Код</span>
+            <button id="reset-btn">Сбросить</button>
+        </div>
+        <textarea id="code" spellcheck="false" autofocus></textarea>
     </div>
 
     <div class="panel">
@@ -77,17 +92,9 @@
     <script>
         const textarea = document.getElementById('code');
         const output = document.getElementById('output');
+        const resetBtn = document.getElementById('reset-btn');
 
-        function update() {
-            const doc = output.contentDocument || output.contentWindow.document;
-            doc.open();
-            doc.write(textarea.value);
-            doc.close();
-        }
-
-        textarea.addEventListener('input', update);
-
-        textarea.value = `<!DOCTYPE html>
+        const initialCode = `<!DOCTYPE html>
 <html lang="ru">
   <head>
     <meta charset="utf-8">
@@ -103,6 +110,37 @@
   </body>
 </html>`;
 
+        function update() {
+            const doc = output.contentDocument || output.contentWindow.document;
+            doc.open();
+            doc.write(textarea.value);
+            doc.close();
+        }
+
+        // Поддержка Tab внутри textarea
+        textarea.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                this.value = this.value.substring(0, start) + "  " + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 2;
+                update();
+            }
+        });
+
+        // Сброс кода
+        resetBtn.addEventListener('click', () => {
+            if (confirm('Очистить изменения и вернуть исходный код?')) {
+                textarea.value = initialCode;
+                update();
+            }
+        });
+
+        textarea.addEventListener('input', update);
+
+        // Инициализация
+        textarea.value = initialCode;
         update();
     </script>
 </body>
