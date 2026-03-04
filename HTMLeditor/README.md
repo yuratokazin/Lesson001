@@ -17,6 +17,7 @@ https://developer-software.ru/editor.html
     </style>
   </head>
   <body>
+
     <h1>Привет!</h1>
     <p>Начни менять код.</p>
     <button onclick="showMessage()">Моя кнопка</button>
@@ -26,6 +27,7 @@ https://developer-software.ru/editor.html
         alert('Привет, мир!');
       }
     </script>
+
   </body>
 </html>
 ```
@@ -149,7 +151,6 @@ button {
 
     <h1>Привет!</h1>
     <p>Начни менять код.</p>
-
     <div>
       <p>Кнопка нажата <span id="counter">0</span> раз(а)</p>
       <button onclick="incrementCounter()">Нажми меня</button>
