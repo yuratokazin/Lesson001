@@ -5,38 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML Editor</title>
     <style>
-        body { 
-            display: flex; 
-            height: 100vh; 
-            margin: 0; 
-            background: #2d2d2d; 
-            color: white; 
-            font-family: sans-serif; 
-            overflow: hidden; 
-            flex-direction: row; 
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            background: #2d2d2d;
+            color: white;
+            font-family: sans-serif;
+            overflow: hidden;
+            flex-direction: row;
         }
-        
-        .panel { 
-            flex: 1; 
-            display: flex; 
-            flex-direction: column; 
-            min-height: 0; 
+
+        .panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
         }
-        
-        .label { 
-            background: #1e1e1e; 
-            padding: 8px 15px; 
-            font-size: 12px; 
-            color: #aaa; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
+
+        .label {
+            background: #1e1e1e;
+            padding: 8px 15px;
+            font-size: 12px;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             border-bottom: 1px solid #3d3d3d;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        #reset-btn {
+        .label button {
             background: #444;
             color: #fff;
             border: none;
@@ -45,27 +45,34 @@
             cursor: pointer;
             border-radius: 3px;
             text-transform: uppercase;
+            margin-left: 5px;
         }
 
-        #reset-btn:active { background: #666; }
-        
-        textarea { 
-            flex: 1; 
-            padding: 15px; 
-            font-family: 'Consolas', 'Monaco', monospace; 
-            font-size: 14px; 
-            border: none; 
-            background: #252526; 
-            color: #d4d4d4; 
-            resize: none; 
-            outline: none; 
+        .label button:hover {
+            background: #555;
+        }
+
+        .label button:active {
+            background: #666;
+        }
+
+        textarea {
+            flex: 1;
+            padding: 15px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            border: none;
+            background: #252526;
+            color: #d4d4d4;
+            resize: none;
+            outline: none;
             tab-size: 2;
         }
-        
-        iframe { 
-            flex: 1; 
-            border: none; 
-            background: white; 
+
+        iframe {
+            flex: 1;
+            border: none;
+            background: white;
         }
 
         @media (max-width: 768px) {
@@ -78,14 +85,17 @@
 
     <div class="panel">
         <div class="label">
-            <span>HTML Код</span>
-            <button id="reset-btn">Сбросить</button>
+            <span>✏️ HTML Код</span>
+            <button id="reset-btn">↺ Сбросить</button>
         </div>
         <textarea id="code" spellcheck="false" autofocus></textarea>
     </div>
 
     <div class="panel">
-        <div class="label">Результат в браузере</div>
+        <div class="label">
+            <span>👁️ Результат в браузере</span>
+            <button id="save-btn">💾 Сохранить HTML</button>
+        </div>
         <iframe id="output"></iframe>
     </div>
 
@@ -93,20 +103,28 @@
         const textarea = document.getElementById('code');
         const output = document.getElementById('output');
         const resetBtn = document.getElementById('reset-btn');
+        const saveBtn = document.getElementById('save-btn');
 
+        // 👇 ТВОЙ КОД С ALERT
         const initialCode = `<!DOCTYPE html>
 <html lang="ru">
   <head>
     <meta charset="utf-8">
     <style>
-      body { font-family: sans-serif; text-align: center; padding-top: 20px; }
-      h1 { color: #007bff; font-size: 1.5rem; }
+      body { text-align: center; padding-top: 20px; }
+      h1 { color: blue; }
+      button { background-color: gold; }
     </style>
   </head>
   <body>
     <h1>Привет!</h1>
     <p>Начни менять код.</p>
-    <button style="background-color: gold;">Моя кнопка</button>
+    <button onclick="showMessage()">Моя кнопка</button>
+    <script>
+      function showMessage() {
+        alert('Привет, мир!');
+      }
+    <\/script>
   </body>
 </html>`;
 
@@ -135,6 +153,26 @@
                 textarea.value = initialCode;
                 update();
             }
+        });
+
+        // 💾 СОХРАНЕНИЕ HTML
+        saveBtn.addEventListener('click', () => {
+            const htmlContent = textarea.value;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'my_page.html'; // имя файла
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            // Маленькое подтверждение
+            saveBtn.textContent = '✅ Сохранено!';
+            setTimeout(() => {
+                saveBtn.textContent = '💾 Сохранить HTML';
+            }, 1000);
         });
 
         textarea.addEventListener('input', update);
