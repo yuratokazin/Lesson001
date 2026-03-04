@@ -132,6 +132,40 @@ button {
 
 Хочешь, чтобы кнопка делала что-то ещё? Можем добавить счётчик кликов или менять текст на странице! 
 
+---
+
+```
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body { text-align: center; padding-top: 20px; }
+      h1 { color: blue; }
+      button { background-color: gold; }
+    </style>
+  </head>
+  <body>
+
+    <h1>Привет!</h1>
+    <p>Начни менять код.</p>
+
+    <div>
+      <p>Кнопка нажата <span id="counter">0</span> раз(а)</p>
+      <button onclick="incrementCounter()">Нажми меня</button>
+    </div>
+
+    <script>
+      let count = 0;
+      function incrementCounter() {
+        count++;
+        document.getElementById('counter').textContent = count;
+      }
+    </script>
+
+  </body>
+</html>
+```
 
 ---
 
