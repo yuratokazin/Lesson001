@@ -1197,3 +1197,301 @@ function helloWorld() {
 
 Это простое решение - вы получаете готовый HTML файл, который можно открыть в любом браузере, отправить по почте или опубликовать на статическом сайте.
 
+---
+
+---
+
+# Редактор слева и превью справа
+
+Вот исправленный код с редактором слева и превью справа, сохраняя вашу структуру:
+
+html
+
+```
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Markdown Editor как на GitHub</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .editor-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .controls {
+      padding: 12px 16px;
+      background-color: #f6f8fa;
+      border-bottom: 1px solid #e1e4e8;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .controls button {
+      padding: 6px 12px;
+      background-color: #24292e;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .controls button:hover {
+      background-color: #1a1e23;
+    }
+
+    .controls button.save-html {
+      background-color: #2ea44f;
+    }
+
+    .controls button.save-html:hover {
+      background-color: #2c974b;
+    }
+
+    /* Новый контейнер для редактора и превью */
+    .main-content {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* Левая панель - редактор */
+    .edit-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #e1e4e8;
+    }
+
+    .section-header {
+      padding: 8px 16px;
+      background-color: #f6f8fa;
+      border-bottom: 1px solid #e1e4e8;
+      font-size: 12px;
+      color: #586069;
+      font-weight: 600;
+    }
+
+    textarea {
+      flex: 1;
+      width: 100%;
+      border: none;
+      resize: none;
+      padding: 16px;
+      font-size: 14px;
+      line-height: 1.6;
+      outline: none;
+    }
+
+    /* Правая панель - превью */
+    .preview-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    #markdown-output {
+      flex: 1;
+      padding: 16px 24px;
+      overflow-y: auto;
+    }
+
+    /* Стили для превью (как у GitHub) */
+    #markdown-output h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 24px 0 16px;
+    }
+
+    #markdown-output h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 24px 0 16px;
+    }
+
+    #markdown-output p {
+      margin: 0 0 16px;
+    }
+
+    #markdown-output ul, ol {
+      padding-left: 2em;
+      margin: 0 0 16px;
+    }
+
+    #markdown-output code {
+      background-color: rgba(27, 31, 35, 0.05);
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+
+    #markdown-output pre {
+      background-color: #f6f8fa;
+      border: 1px solid #e1e4e8;
+      border-radius: 6px;
+      padding: 16px;
+      overflow: auto;
+    }
+
+    /* Скрываем старые вкладки и панели */
+    .tabs, #edit-panel, #preview-panel {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="editor-container">
+    <!-- Кнопки управления -->
+    <div class="controls">
+      <button onclick="saveMarkdown()">Сохранить как .md</button>
+      <button class="save-html" onclick="saveAsHTML()">💾 Сохранить как HTML</button>
+    </div>
+
+    <!-- Новый контейнер с редактором слева и превью справа -->
+    <div class="main-content">
+      <!-- Левая панель - редактор -->
+      <div class="edit-section">
+        <div class="section-header">✏️ РЕДАКТОР (Markdown)</div>
+        <textarea id="markdown-input" placeholder="Введите Markdown..."># Заголовок в стиле GitHub
+Это обычный текст с **жирным** выделением.
+
+```javascript
+// Код с подсветкой синтаксиса
+function helloWorld() {
+  console.log("Привет, мир!");
+}
+```</textarea>
+      </div>
+
+      <!-- Правая панель - превью -->
+      <div class="preview-section">
+        <div class="section-header">👁️ ПРЕВЬЮ (HTML результат)</div>
+        <div id="markdown-output"></div>
+      </div>
+    </div>
+
+    <!-- Старые элементы скрыты, но оставлены для совместимости -->
+    <div class="tabs" style="display: none;">
+      <button class="tab-active">Edit</button>
+      <button>Preview</button>
+    </div>
+    <div id="edit-panel" style="display: none;"></div>
+    <div id="preview-panel" style="display: none;"></div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  // Элементы
+  const markdownInput = document.getElementById('markdown-input');
+  const markdownOutput = document.getElementById('markdown-output');
+
+  // Рендеринг Markdown в HTML
+  function renderMarkdown() {
+    const markdownText = markdownInput.value;
+    markdownOutput.innerHTML = marked.parse(markdownText);
+  }
+
+  // Рендерим при загрузке и при вводе текста
+  renderMarkdown();
+  markdownInput.addEventListener('input', renderMarkdown);
+
+  // Функция сохранения Markdown-файла
+  function saveMarkdown() {
+    const markdownText = markdownInput.value;
+
+    if (!markdownText.trim()) {
+      alert('Нет текста для сохранения!');
+      return;
+    }
+
+    const blob = new Blob([markdownText], { type: 'text/markdown' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'document.md';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+  }
+
+  // Функция сохранения как HTML
+  function saveAsHTML() {
+    const markdownText = markdownInput.value;
+
+    if (!markdownText.trim()) {
+      alert('Нет текста для сохранения!');
+      return;
+    }
+
+    // Конвертируем Markdown в HTML
+    const htmlContent = marked.parse(markdownText);
+
+    // Создаем полный HTML документ
+    const fullHTML = `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Markdown Preview</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown-light.min.css">
+  <style>
+    body {
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .markdown-body {
+      max-width: 980px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    @media (max-width: 767px) {
+      body { padding: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="markdown-body">
+    ${htmlContent}
+  </div>
+</body>
+</html>`;
+
+    // Сохраняем HTML файл
+    const blob = new Blob([fullHTML], { type: 'text/html' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'preview.html';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+
+    console.log('✅ HTML файл сохранен');
+  }
+</script>
+</body>
+</html>
+```
+
+
+
+## Что изменилось:
+
+1. **Добавлен новый контейнер `main-content`** с двумя панелями
+2. **Левая панель (`edit-section`)** - содержит текстовое поле для ввода Markdown
+3. **Правая панель (`preview-section`)** - содержит div для отображения HTML
+4. **Скрыты старые вкладки и панели** (через `display: none`)
+5. **Убрана логика переключения вкладок** - теперь редактор и превью видны одновременно
+6. **Добавлены заголовки панелей** для наглядности
+
+Теперь редактор находится слева, превью справа, и результат обновляется мгновенно при вводе текста!
+
