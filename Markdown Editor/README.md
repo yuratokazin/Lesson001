@@ -1207,11 +1207,11 @@ function helloWorld() {
 
 html
 
-```
-<!DOCTYPE html>
+```<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>Markdown Editor как на GitHub</title>
   <style>
     * {
@@ -1220,49 +1220,56 @@ html
       box-sizing: border-box;
     }
 
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      overflow: hidden;
+    }
+
     .editor-container {
       display: flex;
       flex-direction: column;
       height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      width: 100vw;
+      max-width: 100%;
     }
 
     .controls {
-      padding: 12px 16px;
+      padding: 8px 12px;
       background-color: #f6f8fa;
       border-bottom: 1px solid #e1e4e8;
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
     }
 
     .controls button {
-      padding: 6px 12px;
+      padding: 8px 12px;
       background-color: #24292e;
       color: white;
       border: none;
-      border-radius: 3px;
+      border-radius: 6px;
       cursor: pointer;
       font-size: 14px;
+      flex: 1 1 auto;
+      min-width: 120px;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .controls button:hover {
-      background-color: #1a1e23;
+    .controls button:active {
+      opacity: 0.8;
+      transform: scale(0.98);
     }
 
     .controls button.save-html {
       background-color: #2ea44f;
     }
 
-    .controls button.save-html:hover {
-      background-color: #2c974b;
-    }
-
-    /* Новый контейнер для редактора и превью */
+    /* Главный контент */
     .main-content {
       display: flex;
       flex: 1;
       overflow: hidden;
+      flex-direction: row;
     }
 
     /* Левая панель - редактор */
@@ -1271,15 +1278,23 @@ html
       display: flex;
       flex-direction: column;
       border-right: 1px solid #e1e4e8;
+      background-color: #ffffff;
     }
 
     .section-header {
-      padding: 8px 16px;
+      padding: 8px 12px;
       background-color: #f6f8fa;
       border-bottom: 1px solid #e1e4e8;
       font-size: 12px;
       color: #586069;
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-header i {
+      font-style: normal;
     }
 
     textarea {
@@ -1287,10 +1302,13 @@ html
       width: 100%;
       border: none;
       resize: none;
-      padding: 16px;
-      font-size: 14px;
-      line-height: 1.6;
+      padding: 12px;
+      font-size: 16px; /* Предотвращает зум на iPhone */
+      line-height: 1.5;
       outline: none;
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
+      -webkit-appearance: none;
+      border-radius: 0;
     }
 
     /* Правая панель - превью */
@@ -1298,54 +1316,209 @@ html
       flex: 1;
       display: flex;
       flex-direction: column;
-      overflow-y: auto;
+      overflow: hidden;
+      background-color: #ffffff;
     }
 
     #markdown-output {
       flex: 1;
-      padding: 16px 24px;
+      padding: 12px 16px;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      font-size: 14px;
     }
 
-    /* Стили для превью (как у GitHub) */
+    /* Стили для превью (оптимизированы для мобильных) */
     #markdown-output h1 {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 600;
-      margin: 24px 0 16px;
+      margin: 20px 0 12px;
+      border-bottom: 1px solid #e1e4e8;
+      padding-bottom: 0.3em;
+      line-height: 1.3;
     }
 
     #markdown-output h2 {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
-      margin: 24px 0 16px;
+      margin: 18px 0 12px;
+      border-bottom: 1px solid #e1e4e8;
+      padding-bottom: 0.3em;
+      line-height: 1.3;
+    }
+
+    #markdown-output h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 16px 0 12px;
+      line-height: 1.3;
     }
 
     #markdown-output p {
-      margin: 0 0 16px;
+      margin: 0 0 12px;
+      line-height: 1.5;
     }
 
-    #markdown-output ul, ol {
-      padding-left: 2em;
-      margin: 0 0 16px;
+    #markdown-output ul, #markdown-output ol {
+      padding-left: 1.5em;
+      margin: 0 0 12px;
+    }
+
+    #markdown-output li {
+      margin: 4px 0;
+      line-height: 1.5;
     }
 
     #markdown-output code {
       background-color: rgba(27, 31, 35, 0.05);
       padding: 0.2em 0.4em;
       border-radius: 3px;
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
+      font-size: 85%;
+      word-break: break-word;
     }
 
     #markdown-output pre {
       background-color: #f6f8fa;
       border: 1px solid #e1e4e8;
       border-radius: 6px;
-      padding: 16px;
-      overflow: auto;
+      padding: 12px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 12px 0;
     }
 
-    /* Скрываем старые вкладки и панели */
-    .tabs, #edit-panel, #preview-panel {
-      display: none;
+    #markdown-output pre code {
+      background-color: transparent;
+      padding: 0;
+      border: none;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    #markdown-output blockquote {
+      padding: 0 0 0 12px;
+      color: #6a737d;
+      border-left: 4px solid #e1e4e8;
+      margin: 0 0 12px;
+    }
+
+    #markdown-output table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 12px 0;
+      font-size: 14px;
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #markdown-output table th,
+    #markdown-output table td {
+      padding: 6px 10px;
+      border: 1px solid #e1e4e8;
+      min-width: 80px;
+    }
+
+    #markdown-output img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Мобильная версия: вертикальное расположение */
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+      }
+
+      .edit-section {
+        border-right: none;
+        border-bottom: 1px solid #e1e4e8;
+        max-height: 50vh;
+      }
+
+      .preview-section {
+        max-height: 50vh;
+      }
+
+      .section-header {
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+
+      textarea {
+        padding: 10px;
+        font-size: 15px;
+      }
+
+      #markdown-output {
+        padding: 10px 12px;
+      }
+
+      .controls button {
+        padding: 10px 8px;
+        font-size: 13px;
+        min-width: 100px;
+      }
+    }
+
+    /* Для очень маленьких экранов */
+    @media (max-width: 480px) {
+      .controls {
+        padding: 6px 8px;
+        gap: 4px;
+      }
+
+      .controls button {
+        padding: 8px 6px;
+        font-size: 12px;
+        min-width: 80px;
+      }
+
+      .section-header {
+        padding: 5px 8px;
+        font-size: 10px;
+      }
+
+      textarea {
+        padding: 8px;
+        font-size: 14px;
+      }
+
+      #markdown-output h1 {
+        font-size: 20px;
+        margin: 16px 0 10px;
+      }
+
+      #markdown-output h2 {
+        font-size: 18px;
+        margin: 14px 0 10px;
+      }
+    }
+
+    /* Для устройств с сенсорным экраном */
+    @media (hover: none) and (pointer: coarse) {
+      .controls button {
+        padding: 10px 12px;
+      }
+
+      .controls button:active {
+        background-color: #1a1e23;
+      }
+
+      .controls button.save-html:active {
+        background-color: #2c974b;
+      }
+    }
+
+    /* Убираем скроллбар для превью на мобильных */
+    .preview-section::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .preview-section::-webkit-scrollbar-thumb {
+      background-color: #e1e4e8;
+      border-radius: 2px;
     }
   </style>
 </head>
@@ -1353,15 +1526,17 @@ html
   <div class="editor-container">
     <!-- Кнопки управления -->
     <div class="controls">
-      <button onclick="saveMarkdown()">Сохранить как .md</button>
-      <button class="save-html" onclick="saveAsHTML()">💾 Сохранить как HTML</button>
+      <button onclick="saveMarkdown()">📄 Сохранить .md</button>
+      <button class="save-html" onclick="saveAsHTML()">💾 Сохранить HTML</button>
     </div>
 
-    <!-- Новый контейнер с редактором слева и превью справа -->
+    <!-- Контейнер с редактором слева и превью справа -->
     <div class="main-content">
       <!-- Левая панель - редактор -->
       <div class="edit-section">
-        <div class="section-header">✏️ РЕДАКТОР (Markdown)</div>
+        <div class="section-header">
+          <i>✏️</i> РЕДАКТОР (Markdown)
+        </div>
         <textarea id="markdown-input" placeholder="Введите Markdown..."># Заголовок в стиле GitHub
 Это обычный текст с **жирным** выделением.
 
@@ -1494,4 +1669,23 @@ function helloWorld() {
 6. **Добавлены заголовки панелей** для наглядности
 
 Теперь редактор находится слева, превью справа, и результат обновляется мгновенно при вводе текста!
+
+## Что добавлено для смартфонов:
+
+1. **Meta viewport** - правильное масштабирование на мобильных
+2. **Медиа-запросы** для разных размеров экрана:
+   - До 768px - вертикальное расположение панелей
+   - До 480px - еще более компактные отступы
+3. **Увеличенные кнопки** - легче нажимать пальцем
+4. **Оптимизированные шрифты**:
+   - `font-size: 16px` в textarea (чтобы не зумилось на iPhone)
+   - Уменьшенные заголовки на маленьких экранах
+5. **Touch-оптимизация**:
+   - Визуальный фидбек при нажатии
+   - `-webkit-tap-highlight-color` убирает серый фон при тапе
+6. **Плавный скролл** на мобильных (`-webkit-overflow-scrolling: touch`)
+7. **Горизонтальный скролл** для таблиц и кода
+8. **Компактные отступы** на маленьких экранах
+
+На смартфоне панели располагаются вертикально: сверху редактор, снизу превью.
 
