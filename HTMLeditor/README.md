@@ -1,5 +1,5 @@
 #### Для запуска нажми здесь:
-https://gitcube.ru/editor.html
+[https://gitcube.ru/editor.html](https://newitcube.github.io/editor.html)
 
 А так же можно просто скачать файл **editor.html** на ПК или смартфон и запускать его без интернета.
 
