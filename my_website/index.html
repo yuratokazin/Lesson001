@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Визитка | Иван Иванов | СОШ №3</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://googleapis.com" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">ГБОУ СОШ №3</div>
+            <ul class="nav-links">
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#skills">Навыки</a></li>
+                <li><a href="#projects">Проекты</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Главный экран с фоном -->
+    <section id="hero">
+        <div class="hero-content fade-in">
+            <div class="profile-photo">
+                <!-- Здесь фото ученика. Сейчас стоит заглушка. -->
+                <img src="https://unsplash.com" alt="Иван Иванов">
+            </div>
+            <h1>Иван Иванов</h1>
+            <p class="school-info">Ученик 8 «Б» класса, СОШ №3 (г. Гусиноозерск)</p>
+            <p class="tagline">Будущий инженер и энтузиаст робототехники</p>
+            <a href="#contact" class="btn">Связаться со мной</a>
+        </div>
+    </section>
+
+    <!-- Обо мне -->
+    <section id="about" class="container">
+        <div class="section-title">
+            <h2>Обо мне</h2>
+            <div class="underline"></div>
+        </div>
+        <p class="about-text">Привет! Я живу в прекрасном городе Гусиноозерск и учусь в 8 классе. Мои главные интересы — это точные науки и технологии. Я увлекаюсь программированием на Python и созданием моделей на базе Arduino. В свободное время люблю гулять у нашего озера и заниматься спортом.</p>
+    </section>
+
+    <!-- Навыки и достижения -->
+    <section id="skills" class="bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Мои достижения</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="icon">🏆</div>
+                    <h3>Учёба</h3>
+                    <p>Призер школьной олимпиады по математике (2025 г.)</p>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">🏀</div>
+                    <h3>Спорт</h3>
+                    <p>Активный участник школьной сборной по баскетболу</p>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">💻</div>
+                    <h3>IT-навыки</h3>
+                    <p>Основы Python, монтаж видео и работа с 3D-моделями</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Проекты -->
+    <section id="projects" class="container">
+        <div class="section-title">
+            <h2>Проекты</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="projects-list">
+            <div class="project-item">
+                <h3>🤖 Проект «Умная теплица»</h3>
+                <p>Разработка системы автоматического полива для школьной лаборатории биологии.</p>
+            </div>
+            <div class="project-item">
+                <h3>📱 Бот-помощник</h3>
+                <p>Telegram-бот для оперативного получения расписания уроков 8 "Б" класса.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер и контакты -->
+    <footer id="contact">
+        <div class="container">
+            <h2>Давайте общаться!</h2>
+            <p>Если у вас есть идеи для совместных проектов — пишите.</p>
+            <div class="social-links">
+                <a href="#" class="social-btn">VKontakte</a>
+                <a href="#" class="social-btn">Telegram</a>
+            </div>
+            <p class="email">Email: ivan_8class@mail.ru</p>
+            <hr>
+            <p class="copy">&copy; 2024 Иван Иванов. Школа №3, Гусиноозерск.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
